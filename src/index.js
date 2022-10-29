@@ -16,15 +16,15 @@ const whiteList = [process.env.ORIGIN1];
 
 const corsOptions = {
     // Configuración de CORS con origen dinámico
-    // origin: function (origin, callback) {
-    //     console.log(origin);
+    origin: function (origin, callback) {
+        console.log(origin);
 
-    //     if (whiteList.includes(origin)) return callback(null, true);
+        if (!origin || whiteList.includes(origin)) return callback(null, true);
 
-    //     return callback(`Error de CORS origin: ${origin}, no autorizado`);
-    // }
+        return callback(`Error de CORS origin: ${origin}, no autorizado`);
+    }
 
-    origin: whiteList
+    // origin: whiteList
 }
 
 // configuraciones para impedir el acceso a los controladores
